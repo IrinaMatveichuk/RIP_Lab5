@@ -1,0 +1,18 @@
+{% extends 'static_page.html' %}
+
+{% block header %}Список фигур{% endblock %}
+
+{% block title %}Шахматные фигуры{% endblock %}
+
+{% block body %}
+    <ul>
+    {% for figure in figures %}
+        <li><a href="{% url 'figure_url' figure.id %}">{{ figure.title }}</a></li>
+        {% if figure.title == 'Король' %}
+            {% include 'figure_description.html' with figure=figure %}
+        {% endif %}
+    {% empty %}
+        Пустой список
+    {% endfor %}
+    </ul>
+{% endblock %}
